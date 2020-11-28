@@ -1,0 +1,39 @@
+﻿@page "/counter"
+
+@using BlazorApp1.Data
+ 
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+@inject PageStorageService<Counter> StorageService
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+       // var temp = StorageService.PageState;
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        // reset what we want from stored copy
+        if (StorageService.PageState != null)
+        {
+            currentCount = StorageService.PageState.currentCount;
+
+        }
+        //reconnect
+        StorageService.PageState = this;
+
+        await Task.Yield();
+    }
+
+
+
+}

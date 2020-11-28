@@ -1,0 +1,16 @@
+﻿@page "/counter2"
+
+@using BlazorApp1.Data
+
+<h1>Counter2</h1>
+
+<p>Current count: @currentCount</p>
+<p>LoadDateTime : @StorageService.LoadDateTime</p>
+<p>PageStateNull : @PageStateNullCount</p>
+
+<div>  @((MarkupString)string.Join("\r\n", TestDataSave))  </div>
+
+
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
